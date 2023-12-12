@@ -5,6 +5,7 @@ lsp.preset("recommended")
 lsp.ensure_installed({
   'tsserver',
   'rust_analyzer',
+  'pyright'
 })
 
 -- Fix Undefined global 'vim'
@@ -67,6 +68,7 @@ lsp.format_on_save({
   },
   servers = {
     ['tsserver'] = {'javascript', 'typescript'},
+    ['pyright'] = {'python'},
     ['rust_analyzer'] = {'rust'},
   }
 })
