@@ -20,6 +20,7 @@ return require('packer').startup(function(use)
     config = function() require("nvim-autopairs").setup {} end
   }
 
+  use "folke/zen-mode.nvim"
   use {
   "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
