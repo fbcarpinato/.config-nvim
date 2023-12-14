@@ -7,6 +7,8 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  use "github/copilot.vim"
+
   use {
 	  'nvim-telescope/telescope.nvim', tag = '0.1.4',
 	  -- or                            , branch = '0.1.x',
@@ -14,7 +16,7 @@ return require('packer').startup(function(use)
   }
 
   use({ 'rose-pine/neovim', as = 'rose-pine', commit = '69dca24ba7f8e74f1e6f0bacbc93481ac4047f2e' })
-
+  use "lukas-reineke/indent-blankline.nvim"
   use {
 	"windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup {} end
