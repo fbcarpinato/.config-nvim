@@ -5,7 +5,7 @@ lsp.preset("recommended")
 lsp.ensure_installed({
   'tsserver',
   'rust_analyzer',
-  'pyright'
+  'pyright',
 })
 
 -- Fix Undefined global 'vim'
@@ -70,6 +70,7 @@ lsp.format_on_save({
     ['tsserver'] = {'javascript', 'typescript'},
     ['pyright'] = {'python'},
     ['rust_analyzer'] = {'rust'},
+    ["null-ls"] = { "javascript", "typescript", "lua", "python", "rust", "html", "javascriptreact" },
   }
 })
 
@@ -77,4 +78,15 @@ lsp.setup()
 
 vim.diagnostic.config({
     virtual_text = true
+})
+
+local null_ls = require("null-ls")
+
+null_ls.setup({
+    sources = {
+        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.diagnostics.eslint,
+        null_ls.builtins.completion.spell,
+    },
 })
