@@ -56,6 +56,10 @@ return require('packer').startup(function(use)
   })
 
   use {
+      'ThePrimeagen/harpoon',
+  }
+
+  use {
 	  'VonHeikemen/lsp-zero.nvim',
 	  branch = 'v1.x',
 	  requires = {
