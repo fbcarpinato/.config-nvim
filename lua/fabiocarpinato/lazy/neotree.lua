@@ -22,14 +22,7 @@ return {
 					leave_dirs_open = false,
 				},
 			},
-			buffers = {
-				follow_current_file = {
-					enabled = true,
-					leave_dirs_open = false,
-				},
-			},
 		})
-
-		vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
+		vim.cmd([[nnoremap \ :Neotree reveal action=show<cr>]])
 	end,
 }
