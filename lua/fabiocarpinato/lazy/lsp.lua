@@ -133,6 +133,10 @@ return {
 				null_ls.builtins.formatting.prettierd,
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.completion.spell,
+				null_ls.builtins.formatting.tidy,
+				null_ls.builtins.diagnostics.tidy,
+				null_ls.builtins.formatting.google_java_format,
+				null_ls.builtins.formatting.pint,
 			},
 			-- you can reuse a shared lspconfig on_attach callback here
 			on_attach = function(client, bufnr)
