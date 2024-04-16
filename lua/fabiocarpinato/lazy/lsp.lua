@@ -33,6 +33,8 @@ return {
 			cmp_lsp.default_capabilities()
 		)
 
+		vim.filetype.add({ extension = { templ = "templ" } })
+
 		require("fidget").setup({})
 		require("mason").setup()
 		require("mason-lspconfig").setup({
@@ -137,6 +139,7 @@ return {
 				null_ls.builtins.diagnostics.tidy,
 				null_ls.builtins.formatting.google_java_format,
 				null_ls.builtins.formatting.pint,
+				null_ls.builtins.formatting.gofmt,
 			},
 			-- you can reuse a shared lspconfig on_attach callback here
 			on_attach = function(client, bufnr)
