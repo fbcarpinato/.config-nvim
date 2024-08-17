@@ -1,16 +1,12 @@
 return {
-	{
-		"ellisonleao/gruvbox.nvim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			require("gruvbox").setup({
-				terminal_colors = true,
-			})
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.cmd.colorscheme("tokyonight-moon")
 
-			vim.cmd.colorscheme("gruvbox")
-
-			vim.cmd.hi("Comment gui=none")
-		end,
-	},
+            vim.cmd.hi("Comment gui=none")
+        end,
+    },
 }
