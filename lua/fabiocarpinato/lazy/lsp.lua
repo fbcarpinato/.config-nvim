@@ -41,9 +41,8 @@ return {
       ensure_installed = {
         "lua_ls",
         "rust_analyzer",
-        "tsserver",
+        "ts_ls",
         "templ",
-        "htmx",
         "gopls",
         "tailwindcss",
         "templ",
@@ -57,9 +56,9 @@ return {
           })
         end,
 
-        ["tsserver"] = function()
+        ["ts_ls"] = function()
           local lspconfig = require("lspconfig")
-          lspconfig.tsserver.setup({
+          lspconfig.ts_ls.setup({
             capabilities = capabilities,
             commands = {
               OrganizeImports = {

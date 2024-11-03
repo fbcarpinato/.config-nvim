@@ -39,14 +39,13 @@ return {
     })
 
     local treesitter_parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-    treesitter_parser_config.templ = {
+
+    treesitter_parser_config.c3 = {
       install_info = {
-        url = "https://github.com/vrischmann/tree-sitter-templ.git",
+        url = "https://github.com/c3lang/tree-sitter-c3",
         files = { "src/parser.c", "src/scanner.c" },
-        branch = "master",
+        branch = "main",
       },
     }
-
-    vim.treesitter.language.register("templ", "templ")
   end,
 }

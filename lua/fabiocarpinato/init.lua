@@ -32,6 +32,9 @@ end
 vim.filetype.add({
   extension = {
     templ = "templ",
+    c3 = "c3",
+    c3i = "c3",
+    c3t = "c3",
   },
 })
 
