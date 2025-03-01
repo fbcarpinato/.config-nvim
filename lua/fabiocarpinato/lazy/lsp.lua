@@ -92,6 +92,18 @@ return {
         end,
       },
     })
+    local lspconfig = require("lspconfig")
+    if not lspconfig then
+      lspconfig.c3_lsp = {
+        default_config = {
+          cmd = "c3lsp",
+          filetypes = { "c3", "c3i" },
+          settings = {},
+          name = "c3_lsp",
+        },
+      }
+    end
+    lspconfig.c3_lsp.setup({})
 
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
