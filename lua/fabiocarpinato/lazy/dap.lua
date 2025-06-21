@@ -17,7 +17,6 @@ return {
 				end,
 				desc = "Continue",
 			},
-
 			{
 				"<leader>dC",
 				function()
@@ -25,7 +24,6 @@ return {
 				end,
 				desc = "Run to Cursor",
 			},
-
 			{
 				"<leader>dT",
 				function()
