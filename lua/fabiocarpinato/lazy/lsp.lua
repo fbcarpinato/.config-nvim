@@ -16,6 +16,7 @@ return {
 				lua = { "stylua" },
 				rust = { "rustfmt", lsp_format = "fallback" },
 				javascript = { "prettierd", "prettier", stop_after_first = true },
+				go = { "gofmt" },
 			},
 			format_on_save = {
 				timeout_ms = 500,
@@ -36,6 +37,7 @@ return {
 				lua_ls = {},
 				rust_analyzer = {},
 				ts_ls = {},
+				gopls = {},
 			},
 		},
 
