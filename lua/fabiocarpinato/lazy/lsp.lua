@@ -15,8 +15,10 @@ return {
 			formatters_by_ft = {
 				lua = { "stylua" },
 				rust = { "rustfmt", lsp_format = "fallback" },
-				javascript = { "prettierd", "prettier", stop_after_first = true },
+				javascript = { "prettierd", "eslint", stop_after_first = true },
+				typescript = { "prettierd", "eslint", stop_after_first = true },
 				go = { "gofmt" },
+				c = { "clang-format" },
 			},
 			format_on_save = {
 				timeout_ms = 500,
@@ -38,12 +40,12 @@ return {
 				rust_analyzer = {},
 				ts_ls = {},
 				gopls = {},
+				clangd = {},
+				zls = {},
 			},
 		},
 
 		config = function(_, opts)
-			local lspconfig = require("lspconfig")
-
 			require("mason").setup()
 			require("mason-lspconfig").setup({
 				ensure_installed = vim.tbl_keys(opts.servers),
@@ -52,16 +54,17 @@ return {
 			for server, config in pairs(opts.servers) do
 				local capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
 
-				lspconfig[server].setup({
+				vim.lsp.config(server, {
 					capabilities = capabilities,
 				})
+				vim.lsp.enable(server)
 			end
 		end,
 	},
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		opts = {
-			ensure_installed = { "stylua", "prettierd" },
+			ensure_installed = { "stylua", "prettierd", "eslint-lsp", "clang-format" },
 		},
 	},
 }
