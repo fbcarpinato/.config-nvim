@@ -17,6 +17,7 @@ return {
 				rust = { "rustfmt", lsp_format = "fallback" },
 				javascript = { "prettierd", "eslint", stop_after_first = true },
 				typescript = { "prettierd", "eslint", stop_after_first = true },
+				typescriptreact = { "prettierd", "eslint_d", stop_after_first = true },
 				go = { "gofmt" },
 				c = { "clang-format" },
 				cpp = { "clang-format" },

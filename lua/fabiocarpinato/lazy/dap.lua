@@ -1,7 +1,6 @@
 return {
 	{
 		"mfussenegger/nvim-dap",
-		lazy = true,
 		keys = {
 			{
 				"<leader>db",
