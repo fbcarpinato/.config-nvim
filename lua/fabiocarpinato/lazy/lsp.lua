@@ -38,7 +38,21 @@ return {
 
 		opts = {
 			servers = {
-				lua_ls = {},
+				lua_ls = {
+					settings = {
+						Lua = {
+							diagnostics = {
+								globals = { "vim" },
+							},
+							workspace = {
+								checkThirdParty = false,
+								library = {
+									vim.env.VIMRUNTIME,
+								},
+							},
+						},
+					},
+				},
 				rust_analyzer = {},
 				ts_ls = {},
 				gopls = {},
@@ -55,11 +69,9 @@ return {
 			})
 
 			for server, config in pairs(opts.servers) do
-				local capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
 
-				vim.lsp.config(server, {
-					capabilities = capabilities,
-				})
+				vim.lsp.config(server, config)
 				vim.lsp.enable(server)
 			end
 		end,
