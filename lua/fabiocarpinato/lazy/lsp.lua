@@ -19,6 +19,8 @@ return {
 				typescript = { "prettierd", "eslint", stop_after_first = true },
 				go = { "gofmt" },
 				c = { "clang-format" },
+				cpp = { "clang-format" },
+				sql = { "sleek" },
 			},
 			format_on_save = {
 				timeout_ms = 500,
@@ -40,8 +42,9 @@ return {
 				rust_analyzer = {},
 				ts_ls = {},
 				gopls = {},
-				clangd = {},
 				zls = {},
+				sqls = {},
+				clangd = {},
 			},
 		},
 
@@ -64,7 +67,7 @@ return {
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		opts = {
-			ensure_installed = { "stylua", "prettierd", "eslint-lsp", "clang-format" },
+			ensure_installed = { "stylua", "prettierd", "eslint-lsp", "clang-format", "sleek" },
 		},
 	},
 }
