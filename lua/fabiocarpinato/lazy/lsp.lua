@@ -7,11 +7,7 @@ return {
 			"rafamadriz/friendly-snippets",
 		},
 		version = "*",
-		build = function()
-			-- build the fuzzy matcher, wait up to 60 seconds
-			-- you can use `gb` in `:Lazy` to rebuild the plugin as needed
-			require("blink.cmp").build():wait(60000)
-		end,
+		build = "cargo build --release",
 
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config

@@ -1,40 +1,32 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	branch = "main",
-	lazy = false,
 	build = ":TSUpdate",
 	config = function()
-		require("nvim-treesitter").install({
-			"vimdoc",
-			"javascript",
-			"typescript",
-			"c",
-			"lua",
-			"rust",
-			"jsdoc",
-			"bash",
-			"go",
-			"http",
-			"json",
-		})
-
-		vim.api.nvim_create_autocmd("FileType", {
-			group = vim.api.nvim_create_augroup("treesitter-setup", { clear = true }),
-			callback = function(args)
-				if vim.bo[args.buf].buftype ~= "" then
-					return
-				end
-
-				local ignored_fts = { "oil", "TelescopePrompt", "lazy" }
-				if vim.tbl_contains(ignored_fts, vim.bo[args.buf].filetype) then
-					return
-				end
-
-				pcall(function()
-					vim.treesitter.start(args.buf)
-					vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-				end)
-			end,
+		require("nvim-treesitter").setup({
+			ensure_installed = {
+				"vimdoc",
+				"javascript",
+				"typescript",
+				"c",
+				"lua",
+				"rust",
+				"jsdoc",
+				"bash",
+				"go",
+				"http",
+				"json",
+			},
+			-- Automatically install missing parsers when entering buffer
+			auto_install = true,
+			highlight = {
+				enable = true,
+				-- Disable highlighting for these filetypes
+				disable = { "oil", "TelescopePrompt", "lazy" },
+			},
+			indent = {
+				enable = true,
+			},
 		})
 	end,
 }
