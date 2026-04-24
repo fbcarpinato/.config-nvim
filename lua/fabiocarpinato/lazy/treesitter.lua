@@ -1,51 +1,40 @@
 return {
-  "nvim-treesitter/nvim-treesitter",
-  build = ":TSUpdate",
-  config = function()
-    require("nvim-treesitter.configs").setup({
-      -- A list of parser names, or "all"
-      ensure_installed = {
-        "vimdoc",
-        "javascript",
-        "typescript",
-        "c",
-        "lua",
-        "rust",
-        "jsdoc",
-        "bash",
-      },
+	"nvim-treesitter/nvim-treesitter",
+	branch = "main",
+	lazy = false,
+	build = ":TSUpdate",
+	config = function()
+		require("nvim-treesitter").install({
+			"vimdoc",
+			"javascript",
+			"typescript",
+			"c",
+			"lua",
+			"rust",
+			"jsdoc",
+			"bash",
+			"go",
+			"http",
+			"json",
+		})
 
-      -- Install parsers synchronously (only applied to `ensure_installed`)
-      sync_install = false,
+		vim.api.nvim_create_autocmd("FileType", {
+			group = vim.api.nvim_create_augroup("treesitter-setup", { clear = true }),
+			callback = function(args)
+				if vim.bo[args.buf].buftype ~= "" then
+					return
+				end
 
-      -- Automatically install missing parsers when entering buffer
-      -- Recommendation: set to false if you don"t have `tree-sitter` CLI installed locally
-      auto_install = true,
+				local ignored_fts = { "oil", "TelescopePrompt", "lazy" }
+				if vim.tbl_contains(ignored_fts, vim.bo[args.buf].filetype) then
+					return
+				end
 
-      indent = {
-        enable = true,
-      },
-
-      highlight = {
-        -- `false` will disable the whole extension
-        enable = true,
-
-        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-        -- Set this to `true` if you depend on "syntax" being enabled (like for indentation).
-        -- Using this option may slow down your editor, and you may see some duplicate highlights.
-        -- Instead of true it can also be a list of languages
-        additional_vim_regex_highlighting = { "markdown" },
-      },
-    })
-
-    local treesitter_parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-
-    treesitter_parser_config.c3 = {
-      install_info = {
-        url = "https://github.com/c3lang/tree-sitter-c3",
-        files = { "src/parser.c", "src/scanner.c" },
-        branch = "main",
-      },
-    }
-  end,
+				pcall(function()
+					vim.treesitter.start(args.buf)
+					vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+				end)
+			end,
+		})
+	end,
 }

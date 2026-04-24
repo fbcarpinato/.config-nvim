@@ -5,4 +5,8 @@ return {
 	},
 
 	"github/copilot.vim",
+	{
+		"j-hui/fidget.nvim",
+		opts = {},
+	},
 }
